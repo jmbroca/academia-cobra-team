@@ -1,0 +1,415 @@
+:root {
+    --bg-dark: #0a0a0a;
+    --text-light: #ffffff;
+    --text-muted: #a1a1aa;
+    --red-cobra: #d4183d; /* El rojo extraído de tu theme.css */
+    --font-main: 'Montserrat', sans-serif;
+}
+
+/* --- Reseteo básico --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-main);
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 40px;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+}
+
+/* --- Navegación --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    border-bottom: 1px solid #333;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--bg-dark);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--text-light);
+}
+
+/* --- Botones --- */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.btn-red {
+    background-color: var(--red-cobra);
+    color: white;
+}
+
+.btn-red:hover {
+    background-color: #b31433;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--red-cobra);
+    border: 1px solid var(--red-cobra);
+    margin-left: 10px;
+}
+
+.btn-outline:hover {
+    background-color: rgba(212, 24, 61, 0.1);
+}
+
+.btn-large {
+    padding: 15px 30px;
+    font-size: 1rem;
+    margin-top: 20px;
+}
+
+/* --- Sección Hero --- */
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('../img/fondo-hero.webp');
+    background-size: cover;
+    background-position: center;
+    height: calc(100vh - 80px); /* Ocupa el alto de la pantalla menos el menú */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.text-red {
+    color: var(--red-cobra);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: #cccccc;
+    margin-bottom: 30px;
+}
+
+/* --- Clases reutilizables --- */
+section {
+    padding: 80px 5%;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title.text-left {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+/* --- Sección: ¿Por qué Cobra Team? (Tarjetas) --- */
+.features-section {
+    background-color: #131313; 
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background-color: #262626;
+    padding: 40px 30px;
+    border-left: 4px solid var(--red-cobra);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px); 
+}
+
+.feature-icon {
+    font-size: 3rem; /* Hace los íconos más grandes */
+    color: var(--red-cobra); /* Les aplica tu rojo característico */
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.feature-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* --- Sección: Sobre Nosotros --- */
+.about-wrapper {
+    background-color: #000000;
+    width: 100%;
+}
+
+.about-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-content {
+    flex: 1;
+}
+
+.about-content p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+.about-stats {
+    display: flex;
+    gap: 150px;
+    margin-top: 40px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    color: var(--red-cobra);
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.about-image {
+    flex: 1;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+/* --- Sección: Nuestras Disciplinas --- */
+.disciplines-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.discipline-card {
+    position: relative;
+    overflow: hidden; 
+    border-radius: 4px;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+}
+
+.discipline-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.discipline-card:hover img {
+    transform: scale(1.1);
+}
+
+.discipline-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 50px 20px 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.discipline-overlay h3 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin: 0;
+}
+
+/* --- Sección: Listo para el Desafío (CTA) --- */
+.cta-section {
+    background-color: var(--red-cobra);
+    text-align: center;
+    padding: 100px 5%; 
+}
+
+.cta-content h2 {
+    color: #ffffff;
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.cta-content p {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+
+.btn-white {
+    background-color: #ffffff;
+    color: var(--red-cobra);
+}
+
+.btn-white:hover {
+    background-color: #f4f4f5;
+    transform: translateY(-2px);
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: var(--bg-dark); /* Reutiliza el fondo negro base */
+    padding: 70px 5% 30px; /* Da espacio arriba y abajo */
+}
+
+.footer-container {
+    display: grid;
+    /* Divide el footer en 4 columnas, dándole un poco más de espacio a la primera (el logo) */
+    grid-template-columns: 1.5fr 1fr 1fr 1fr; 
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 50px; /* Espacio antes de la línea final */
+}
+
+/* El bloque del Logo */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* El cuadro rojo del trofeo */
+.logo-icon-box {
+    background-color: var(--red-cobra);
+    color: #ffffff;
+    font-size: 1.5rem;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.footer-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Títulos de las columnas */
+.footer-col h4 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+/* Listas (Enlaces, Horarios, Contacto) */
+.footer-col ul {
+    list-style: none; /* Quita los puntos de la lista */
+}
+
+.footer-col ul li {
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.footer-col ul li a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Efecto hover solo para los enlaces */
+.footer-col ul li a:hover {
+    color: var(--text-light);
+}
+
+/* Línea separadora y Copyright */
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 25px;
+    border-top: 1px solid #333333; /* La línea sutil delgada */
+}
+
+.footer-bottom p {
+    color: #71717a; /* Un gris ligeramente más oscuro para no robar atención */
+    font-size: 0.95rem;
+}
