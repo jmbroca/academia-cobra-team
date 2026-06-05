@@ -24,7 +24,7 @@
         </nav>
 
         <div class="nav-buttons">
-            <button class="btn btn-red">Iniciar Sesión</button>
+            <button id="btn-login" class="btn btn-red">Iniciar Sesión</button>
             <button class="btn btn-outline">Registrarse</button>
         </div>
     </header>
@@ -174,6 +174,32 @@
             <p>&copy; 2026 Cobra Team. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <i class='bx bx-x close-btn'></i>
+            
+            <h2>INICIAR SESIÓN</h2>
+            
+            <form action="#" method="POST">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="tu@email.com" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                
+                <button type="submit" class="btn btn-red btn-full">ENTRAR</button>
+            </form>
+            
+            <p class="modal-footer-text">Usa 'admin@cobrateam.com' para vista de administrador</p>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
 
 </body>
 

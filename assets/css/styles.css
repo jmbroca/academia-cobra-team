@@ -413,3 +413,99 @@ section {
     color: #71717a; /* Un gris ligeramente más oscuro para no robar atención */
     font-size: 0.95rem;
 }
+
+/* --- Modal (Ventana Emergente) --- */
+
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 2000; /* Lo ponemos en 2000 para que pase por encima del menú que tiene 1000 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* El fondo oscuro semitransparente */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Esta clase la agregaremos con JavaScript para mostrar el modal */
+.modal.show {
+    display: flex; 
+}
+
+.modal-content {
+    background-color: #151515; /* Gris oscuro para la caja */
+    border: 1px solid var(--red-cobra); /* El borde rojo característico */
+    padding: 40px;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: var(--text-muted);
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: var(--text-light);
+}
+
+.modal-content h2 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 30px;
+    color: var(--text-light);
+    text-transform: uppercase;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #262626; /* Fondo gris para los inputs */
+    border: 1px solid #333;
+    color: var(--text-light);
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+/* Efecto cuando escribes en la caja */
+.input-group input:focus {
+    border-color: var(--red-cobra);
+}
+
+/* Clase para que el botón abarque todo el ancho */
+.btn-full {
+    width: 100%;
+    margin-top: 10px;
+    padding: 15px;
+    font-size: 1rem;
+}
+
+.modal-footer-text {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    margin-top: 25px;
+}
