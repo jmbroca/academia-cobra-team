@@ -194,8 +194,6 @@
                 
                 <button type="submit" class="btn btn-red btn-full">ENTRAR</button>
             </form>
-            
-            <p class="modal-footer-text">Usa 'admin@cobrateam.com' para vista de administrador</p>
         </div>
     </div>
 
