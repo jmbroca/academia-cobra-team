@@ -181,19 +181,32 @@
             
             <h2>INICIAR SESIÓN</h2>
             
-            <form action="#" method="POST">
+            <?php if(isset($_GET['error'])): ?>
+                <div class="error-mensaje">
+                    <?php 
+                        if($_GET['error'] == 'contrasena') {
+                            echo "Contraseña incorrecta. Inténtalo de nuevo.";
+                        } elseif($_GET['error'] == 'correo') {
+                            echo "El correo no existe o la cuenta está inactiva.";
+                        }
+                    ?>
+                </div>
+            <?php endif; ?>
+            
+            <form action="procesar_login.php" method="POST">
                 <div class="input-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="tu@email.com" required>
+                    <input type="email" id="email" name="email" placeholder="tu@email.com" required>
                 </div>
                 
                 <div class="input-group">
                     <label for="password">Contraseña</label>
-                    <input type="password" id="password" placeholder="••••••••" required>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
                 </div>
                 
                 <button type="submit" class="btn btn-red btn-full">ENTRAR</button>
             </form>
+
         </div>
     </div>
 

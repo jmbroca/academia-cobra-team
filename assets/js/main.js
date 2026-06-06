@@ -19,4 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
             modal.classList.remove("show");
         }
     });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('error')) {
+        modal.classList.add("show");
+        
+        // Opcional: Limpiar la URL para que no se quede pegado el "?error=" si el usuario cierra el modal
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
 });

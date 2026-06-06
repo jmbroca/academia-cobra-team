@@ -509,3 +509,16 @@ section {
     font-size: 0.75rem;
     margin-top: 25px;
 }
+
+/* --- Mensaje de Error en el Modal --- */
+.error-mensaje {
+    background-color: rgba(212, 24, 61, 0.1); /* Fondo rojo transparente */
+    color: var(--red-cobra);
+    border: 1px solid var(--red-cobra);
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: center;
+}
