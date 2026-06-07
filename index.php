@@ -25,7 +25,7 @@
 
         <div class="nav-buttons">
             <button id="btn-login" class="btn btn-red">Iniciar Sesión</button>
-            <button class="btn btn-outline">Registrarse</button>
+            <button id="btn-register" class="btn btn-outline">Registrarse</button>
         </div>
     </header>
 
@@ -95,9 +95,9 @@
             
             <div class="disciplines-grid">
                 <div class="discipline-card">
-                    <img src="assets/img/karate.jpg" alt="Karate">
+                    <img src="assets/img/muaythai.webp" alt="Muay Thai">
                     <div class="discipline-overlay">
-                        <h3>Karate</h3>
+                        <h3>Muay Thai</h3>
                     </div>
                 </div>
                 
@@ -116,9 +116,9 @@
                 </div>
                 
                 <div class="discipline-card">
-                    <img src="assets/img/jiujitsu.jpg" alt="Jiu-Jitsu">
+                    <img src="assets/img/boxeo.jpg" alt="Boxeo">
                     <div class="discipline-overlay">
-                        <h3>Jiu-Jitsu</h3>
+                        <h3>Boxeo</h3>
                     </div>
                 </div>
             </div>
@@ -128,7 +128,7 @@
             <div class="cta-content">
                 <h2>¿LISTO PARA EL DESAFÍO?</h2>
                 <p>No esperes más. Tu transformación comienza hoy.</p>
-                <button class="btn btn-white btn-large">REGISTRARME AHORA</button>
+                <button id="btn-cta-register" class="btn btn-white btn-large">REGISTRARME AHORA</button>
             </div>
         </section>
 
@@ -165,7 +165,7 @@
                 <ul>
                     <li>info@cobrateam.com</li>
                     <li>+52 123 456 7890</li>
-                    <li>Av. Principal #123, CDMX</li>
+                    <li>Av. Periférica Norte, Esquina con 53, Colonia Morelos</li>
                 </ul>
             </div>
         </div>
@@ -207,6 +207,61 @@
                 <button type="submit" class="btn btn-red btn-full">ENTRAR</button>
             </form>
 
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <i class='bx bx-x close-btn close-btn-reg'></i>
+            
+            <h2>CREAR CUENTA</h2>
+            
+            <?php if(isset($_GET['error_reg'])): ?>
+                <div class="error-mensaje">
+                    <?php 
+                        if($_GET['error_reg'] == 'correo_existe') echo "Este correo ya está registrado.";
+                        elseif($_GET['error_reg'] == 'vacio') echo "Por favor, completa todos los campos.";
+                        else echo "Ocurrió un error. Inténtalo de nuevo.";
+                    ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if(isset($_GET['exito'])): ?>
+                <div class="exito-mensaje">
+                    ¡Cuenta creada con éxito! Ya puedes iniciar sesión.
+                </div>
+            <?php endif; ?>
+            
+            <form action="procesar_registro.php" method="POST">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="apellidos">Apellidos</label>
+                        <input type="text" id="apellidos" name="apellidos" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="email_reg">Email</label>
+                    <input type="email" id="email_reg" name="email" placeholder="tu@email.com" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="password_reg">Contraseña</label>
+                        <input type="password" id="password_reg" name="password" placeholder="••••••••" required minlength="6">
+                    </div>
+                    <div class="input-group">
+                        <label for="fecha_nacimiento">Fecha de Nac.</label>
+                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-red btn-full">REGISTRARME</button>
+            </form>
         </div>
     </div>
 

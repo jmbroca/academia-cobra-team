@@ -522,3 +522,31 @@ section {
     margin-bottom: 20px;
     text-align: center;
 }
+
+/* --- Ajustes para el Modal de Registro --- */
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .input-group {
+    flex: 1; /* Hace que ambos campos midan lo mismo */
+}
+
+/* Para que el calendario del input tipo 'date' se vea bien en fondo oscuro */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.exito-mensaje {
+    background-color: rgba(46, 204, 113, 0.1); /* Fondo verde transparente */
+    color: #2ecc71; /* Verde brillante */
+    border: 1px solid #2ecc71;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: center;
+}
