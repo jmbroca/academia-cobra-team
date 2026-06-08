@@ -866,3 +866,114 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .badge-oro { background-color: rgba(241, 196, 15, 0.1); color: #f1c40f; }
 .badge-plata { background-color: rgba(189, 195, 199, 0.1); color: #bdc3c7; }
 .badge-bronce { background-color: rgba(211, 84, 0, 0.1); color: #d35400; }
+
+/* =========================================
+   Pestaña: PAGOS
+========================================= */
+
+/* --- Tarjeta de Estatus (Semáforo) --- */
+.payment-status-card {
+    background-color: #151515;
+    border-radius: 6px;
+    padding: 35px 30px;
+    text-align: center;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Colores dinámicos para el borde superior según el estatus */
+.status-ok {
+    border-top: 4px solid #2ecc71; /* Verde */
+}
+
+.status-warning {
+    border-top: 4px solid #f1c40f; /* Amarillo */
+}
+
+.status-danger {
+    border-top: 4px solid var(--red-cobra); /* Rojo */
+}
+
+.payment-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+}
+
+.status-ok .payment-icon { color: #2ecc71; }
+.status-warning .payment-icon { color: #f1c40f; }
+.status-danger .payment-icon { color: var(--red-cobra); }
+
+.payment-status-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--text-light);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.payment-status-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* --- Tarjeta de Datos Bancarios --- */
+.bank-info-card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 30px;
+    border-left: 4px solid var(--text-muted);
+}
+
+.bank-info-card h3 {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+}
+
+.bank-detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #262626;
+}
+
+.bank-detail-row:last-of-type {
+    border-bottom: none;
+    margin-bottom: 15px;
+}
+
+.bank-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.bank-value {
+    color: var(--text-light);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.bank-instruction {
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    border: 1px dashed #333;
+}
+
+.badge-warning {
+    background-color: rgba(241, 196, 15, 0.1);
+    color: #f1c40f;
+    border: 1px solid #f1c40f;
+}
