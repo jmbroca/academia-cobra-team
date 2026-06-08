@@ -11,9 +11,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password_plana = trim($_POST['password']);
     $fecha_nac = trim($_POST['fecha_nacimiento']);
 
+    // NUEVO: Detectar de dónde viene la petición
+    $origen = isset($_POST['origen']) ? $_POST['origen'] : 'publico';
+    // Si viene del admin, la ruta de regreso es a la carpeta admin. Si no, a index.php
+    $ruta_regreso = ($origen === 'admin') ? 'admin/alumnos.php' : 'index.php';
+
     // Validar que no vengan vacíos
     if(empty($nombre) || empty($apellidos) || empty($email) || empty($password_plana) || empty($fecha_nac)) {
-        header("Location: index.php?error_reg=vacio");
+        header("Location: $ruta_regreso?error_reg=vacio");
         exit();
     }
 
@@ -25,8 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_check->close();
 
     if ($resultado_check->num_rows > 0) {
-        // El correo ya está registrado
-        header("Location: index.php?error_reg=correo_existe");
+        header("Location: $ruta_regreso?error_reg=correo_existe");
         exit();
     }
 
@@ -38,14 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_insert->bind_param("sssss", $nombre, $apellidos, $email, $password_hash, $fecha_nac);
 
     if ($stmt_insert->execute()) {
-        // Registro exitoso
         $stmt_insert->close();
-        header("Location: index.php?exito=1");
+        header("Location: $ruta_regreso?exito=1");
         exit();
     } else {
-        // Ocurrió un error en la BD
         $stmt_insert->close();
-        header("Location: index.php?error_reg=bd");
+        header("Location: $ruta_regreso?error_reg=bd");
         exit();
     }
 
