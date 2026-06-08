@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-06-2026 a las 01:56:00
+-- Tiempo de generación: 08-06-2026 a las 04:38:43
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -49,7 +49,7 @@ CREATE TABLE `alumnos_disciplinas` (
   `id_registro` int(11) NOT NULL,
   `id_alumno` int(11) NOT NULL,
   `id_disciplina` int(11) NOT NULL,
-  `cinturon_actual` varchar(50) DEFAULT 'Cinta Blanca',
+  `id_cinturon` int(11) DEFAULT NULL,
   `porcentaje_progreso` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -70,6 +70,32 @@ CREATE TABLE `asistencias` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `cinturones`
+--
+
+CREATE TABLE `cinturones` (
+  `id_cinturon` int(11) NOT NULL,
+  `id_disciplina` int(11) NOT NULL,
+  `nombre_cinturon` varchar(50) NOT NULL,
+  `orden` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `cinturones`
+--
+
+INSERT INTO `cinturones` (`id_cinturon`, `id_disciplina`, `nombre_cinturon`, `orden`) VALUES
+(1, 1, 'Cinta Blanca', 1),
+(2, 1, 'Cinta Amarilla', 2),
+(3, 1, 'Cinta Naranja', 3),
+(4, 1, 'Cinta Verde', 4),
+(5, 1, 'Cinta Azul', 5),
+(6, 1, 'Cinta Marrón', 6),
+(7, 1, 'Cinta Negra 1er Dan', 7);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `clases`
 --
 
@@ -78,6 +104,21 @@ CREATE TABLE `clases` (
   `id_disciplina` int(11) NOT NULL,
   `id_instructor` int(11) NOT NULL,
   `fecha_hora` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `competencias_historial`
+--
+
+CREATE TABLE `competencias_historial` (
+  `id_competencia` int(11) NOT NULL,
+  `id_alumno` int(11) NOT NULL,
+  `nombre_torneo` varchar(100) NOT NULL,
+  `categoria` varchar(50) NOT NULL,
+  `resultado` enum('1er lugar','2do lugar','3er lugar','Participación') NOT NULL,
+  `fecha_competencia` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -100,6 +141,21 @@ INSERT INTO `disciplinas` (`id_disciplina`, `nombre_disciplina`) VALUES
 (4, 'Kickboxing'),
 (1, 'Muay Thai'),
 (2, 'Taekwondo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `examenes_historial`
+--
+
+CREATE TABLE `examenes_historial` (
+  `id_examen` int(11) NOT NULL,
+  `id_alumno` int(11) NOT NULL,
+  `cinturon_obtenido` varchar(50) NOT NULL,
+  `calificacion` int(11) NOT NULL,
+  `estatus` enum('Aprobado','Reprobado') DEFAULT 'Aprobado',
+  `fecha_examen` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -161,7 +217,8 @@ ALTER TABLE `alumnos`
 ALTER TABLE `alumnos_disciplinas`
   ADD PRIMARY KEY (`id_registro`),
   ADD UNIQUE KEY `id_alumno` (`id_alumno`,`id_disciplina`),
-  ADD KEY `id_disciplina` (`id_disciplina`);
+  ADD KEY `id_disciplina` (`id_disciplina`),
+  ADD KEY `id_cinturon` (`id_cinturon`);
 
 --
 -- Indices de la tabla `asistencias`
@@ -172,6 +229,13 @@ ALTER TABLE `asistencias`
   ADD KEY `id_clase` (`id_clase`);
 
 --
+-- Indices de la tabla `cinturones`
+--
+ALTER TABLE `cinturones`
+  ADD PRIMARY KEY (`id_cinturon`),
+  ADD KEY `id_disciplina` (`id_disciplina`);
+
+--
 -- Indices de la tabla `clases`
 --
 ALTER TABLE `clases`
@@ -180,11 +244,25 @@ ALTER TABLE `clases`
   ADD KEY `id_instructor` (`id_instructor`);
 
 --
+-- Indices de la tabla `competencias_historial`
+--
+ALTER TABLE `competencias_historial`
+  ADD PRIMARY KEY (`id_competencia`),
+  ADD KEY `id_alumno` (`id_alumno`);
+
+--
 -- Indices de la tabla `disciplinas`
 --
 ALTER TABLE `disciplinas`
   ADD PRIMARY KEY (`id_disciplina`),
   ADD UNIQUE KEY `nombre_disciplina` (`nombre_disciplina`);
+
+--
+-- Indices de la tabla `examenes_historial`
+--
+ALTER TABLE `examenes_historial`
+  ADD PRIMARY KEY (`id_examen`),
+  ADD KEY `id_alumno` (`id_alumno`);
 
 --
 -- Indices de la tabla `instructores`
@@ -229,16 +307,34 @@ ALTER TABLE `asistencias`
   MODIFY `id_asistencia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `cinturones`
+--
+ALTER TABLE `cinturones`
+  MODIFY `id_cinturon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT de la tabla `clases`
 --
 ALTER TABLE `clases`
   MODIFY `id_clase` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `competencias_historial`
+--
+ALTER TABLE `competencias_historial`
+  MODIFY `id_competencia` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `disciplinas`
 --
 ALTER TABLE `disciplinas`
   MODIFY `id_disciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `examenes_historial`
+--
+ALTER TABLE `examenes_historial`
+  MODIFY `id_examen` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `instructores`
@@ -267,7 +363,8 @@ ALTER TABLE `pagos`
 --
 ALTER TABLE `alumnos_disciplinas`
   ADD CONSTRAINT `alumnos_disciplinas_ibfk_1` FOREIGN KEY (`id_alumno`) REFERENCES `alumnos` (`id_alumno`) ON DELETE CASCADE,
-  ADD CONSTRAINT `alumnos_disciplinas_ibfk_2` FOREIGN KEY (`id_disciplina`) REFERENCES `disciplinas` (`id_disciplina`) ON DELETE CASCADE;
+  ADD CONSTRAINT `alumnos_disciplinas_ibfk_2` FOREIGN KEY (`id_disciplina`) REFERENCES `disciplinas` (`id_disciplina`) ON DELETE CASCADE,
+  ADD CONSTRAINT `alumnos_disciplinas_ibfk_3` FOREIGN KEY (`id_cinturon`) REFERENCES `cinturones` (`id_cinturon`);
 
 --
 -- Filtros para la tabla `asistencias`
@@ -277,11 +374,29 @@ ALTER TABLE `asistencias`
   ADD CONSTRAINT `asistencias_ibfk_2` FOREIGN KEY (`id_clase`) REFERENCES `clases` (`id_clase`) ON DELETE CASCADE;
 
 --
+-- Filtros para la tabla `cinturones`
+--
+ALTER TABLE `cinturones`
+  ADD CONSTRAINT `cinturones_ibfk_1` FOREIGN KEY (`id_disciplina`) REFERENCES `disciplinas` (`id_disciplina`) ON DELETE CASCADE;
+
+--
 -- Filtros para la tabla `clases`
 --
 ALTER TABLE `clases`
   ADD CONSTRAINT `clases_ibfk_1` FOREIGN KEY (`id_disciplina`) REFERENCES `disciplinas` (`id_disciplina`) ON DELETE CASCADE,
   ADD CONSTRAINT `clases_ibfk_2` FOREIGN KEY (`id_instructor`) REFERENCES `instructores` (`id_instructor`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `competencias_historial`
+--
+ALTER TABLE `competencias_historial`
+  ADD CONSTRAINT `competencias_historial_ibfk_1` FOREIGN KEY (`id_alumno`) REFERENCES `alumnos` (`id_alumno`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `examenes_historial`
+--
+ALTER TABLE `examenes_historial`
+  ADD CONSTRAINT `examenes_historial_ibfk_1` FOREIGN KEY (`id_alumno`) REFERENCES `alumnos` (`id_alumno`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `logros`
