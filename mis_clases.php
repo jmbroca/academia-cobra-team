@@ -1,27 +1,6 @@
 <?php 
 require 'includes/seguridad_estudiante.php'; 
 require 'includes/conexion.php';
-
-// Función para traducir fechas al español
-function fechaEspanol($fecha, $formato = 'larga') {
-    $timestamp = strtotime($fecha);
-    
-    // Diccionarios de traducción
-    $dias = ['Sunday' => 'Domingo', 'Monday' => 'Lunes', 'Tuesday' => 'Martes', 'Wednesday' => 'Miércoles', 'Thursday' => 'Jueves', 'Friday' => 'Viernes', 'Saturday' => 'Sábado'];
-    $meses = ['Jan' => 'Ene', 'Feb' => 'Feb', 'Mar' => 'Mar', 'Apr' => 'Abr', 'May' => 'May', 'Jun' => 'Jun', 'Jul' => 'Jul', 'Aug' => 'Ago', 'Sep' => 'Sep', 'Oct' => 'Oct', 'Nov' => 'Nov', 'Dec' => 'Dic'];
-    
-    $dia_ingles = date('l', $timestamp);
-    $mes_ingles = date('M', $timestamp);
-    
-    if ($formato == 'corta') {
-        // Formato: 10 Jun, 6:00 PM (Para la Próxima Clase)
-        return date('d', $timestamp) . " " . $meses[$mes_ingles] . ", " . date('g:i A', $timestamp);
-    } else {
-        // Formato: Lunes 01 Jun, 2026 (Para el Historial)
-        return $dias[$dia_ingles] . " " . date('d', $timestamp) . " " . $meses[$mes_ingles] . ", " . date('Y', $timestamp);
-    }
-}
-
 $pagina_actual = 'mis_clases'; 
 require 'includes/header_estudiante.php'; 
 
