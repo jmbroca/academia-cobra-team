@@ -33,7 +33,7 @@
         <div class="hero-content">
             <h1>DESATA TU <span class="text-red">PODER<br>INTERIOR</span></h1>
             <p>Únete a la élite de las artes marciales. Transforma tu cuerpo, mente y espíritu.</p>
-            <button class="btn btn-red btn-large">COMENZAR AHORA</button>
+            <a href="#registro" class="btn btn-red btn-large">COMENZAR AHORA</a>
         </div>
     </section>
     
@@ -124,7 +124,7 @@
             </div>
         </section>
 
-        <section class="cta-section">
+        <section id="registro" class="cta-section">
             <div class="cta-content">
                 <h2>¿LISTO PARA EL DESAFÍO?</h2>
                 <p>No esperes más. Tu transformación comienza hoy.</p>
@@ -145,9 +145,9 @@
             <div class="footer-col">
                 <h4>Enlaces</h4>
                 <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Nosotros</a></li>
-                    <li><a href="#">Clases</a></li>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#registro">Clases</a></li>
                 </ul>
             </div>
 

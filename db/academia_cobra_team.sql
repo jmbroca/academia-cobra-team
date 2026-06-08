@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-06-2026 a las 22:44:55
+-- Tiempo de generación: 08-06-2026 a las 01:56:00
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -76,7 +76,7 @@ CREATE TABLE `asistencias` (
 CREATE TABLE `clases` (
   `id_clase` int(11) NOT NULL,
   `id_disciplina` int(11) NOT NULL,
-  `instructor` varchar(100) NOT NULL,
+  `id_instructor` int(11) NOT NULL,
   `fecha_hora` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -100,6 +100,18 @@ INSERT INTO `disciplinas` (`id_disciplina`, `nombre_disciplina`) VALUES
 (4, 'Kickboxing'),
 (1, 'Muay Thai'),
 (2, 'Taekwondo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `instructores`
+--
+
+CREATE TABLE `instructores` (
+  `id_instructor` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `rango` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -164,7 +176,8 @@ ALTER TABLE `asistencias`
 --
 ALTER TABLE `clases`
   ADD PRIMARY KEY (`id_clase`),
-  ADD KEY `id_disciplina` (`id_disciplina`);
+  ADD KEY `id_disciplina` (`id_disciplina`),
+  ADD KEY `id_instructor` (`id_instructor`);
 
 --
 -- Indices de la tabla `disciplinas`
@@ -172,6 +185,12 @@ ALTER TABLE `clases`
 ALTER TABLE `disciplinas`
   ADD PRIMARY KEY (`id_disciplina`),
   ADD UNIQUE KEY `nombre_disciplina` (`nombre_disciplina`);
+
+--
+-- Indices de la tabla `instructores`
+--
+ALTER TABLE `instructores`
+  ADD PRIMARY KEY (`id_instructor`);
 
 --
 -- Indices de la tabla `logros`
@@ -222,6 +241,12 @@ ALTER TABLE `disciplinas`
   MODIFY `id_disciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `instructores`
+--
+ALTER TABLE `instructores`
+  MODIFY `id_instructor` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `logros`
 --
 ALTER TABLE `logros`
@@ -255,7 +280,8 @@ ALTER TABLE `asistencias`
 -- Filtros para la tabla `clases`
 --
 ALTER TABLE `clases`
-  ADD CONSTRAINT `clases_ibfk_1` FOREIGN KEY (`id_disciplina`) REFERENCES `disciplinas` (`id_disciplina`) ON DELETE CASCADE;
+  ADD CONSTRAINT `clases_ibfk_1` FOREIGN KEY (`id_disciplina`) REFERENCES `disciplinas` (`id_disciplina`) ON DELETE CASCADE,
+  ADD CONSTRAINT `clases_ibfk_2` FOREIGN KEY (`id_instructor`) REFERENCES `instructores` (`id_instructor`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `logros`

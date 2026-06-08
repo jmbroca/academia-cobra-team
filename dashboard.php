@@ -1,4 +1,8 @@
-<?php require 'includes/seguridad_estudiante.php'; ?>
+<?php 
+require 'includes/seguridad_estudiante.php'; 
+$pagina_actual = 'inicio'; 
+require 'includes/header_estudiante.php'; 
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
